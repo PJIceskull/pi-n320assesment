@@ -2,7 +2,7 @@
 
 export default function Error({ error, reset }) {
   return (
-    <div className="p-8 text-red-100">
+    <div className="p-8 text-red-500">
       <h1>Error Occured!!</h1>
       <p>{error.message}</p>
 
