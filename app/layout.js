@@ -38,7 +38,8 @@ export default function RootLayout({ children }) {
     <html>
       <body>
         <NavBar />
-        <main>{children}</main> {/* All pages render here */}
+        <main className="min-h-dvh">{children}</main>{" "}
+        {/* All pages render here */}
         <Footer />
       </body>
     </html>
