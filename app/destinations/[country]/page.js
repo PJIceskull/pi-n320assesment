@@ -7,9 +7,9 @@
 // 4. Data fetching and display patterns
 // 5. Integration with nested layouts
 
-import Link from 'next/link'
-import { getCountryData, isValidCountry } from './data'
-import { notFound } from 'next/navigation'
+import Link from "next/link";
+import { getCountryData, isValidCountry } from "./data";
+import { notFound } from "next/navigation";
 
 // DYNAMIC COUNTRY PAGE COMPONENT
 // This component receives the dynamic route parameter and displays country details
@@ -17,21 +17,21 @@ export default function CountryPage({ params }) {
   // EXTRACT ROUTE PARAMETER
   // The [country] folder name becomes available as params.country
   // For URL /destinations/france, params.country will be "france"
-  const { country } = params
-  
+  const { country } = params;
+
   // VALIDATE AND FETCH COUNTRY DATA
   // Check if the country exists in our data before trying to display it
   if (!isValidCountry(country)) {
     // Next.js 14 App Router way to trigger 404 page
-    notFound()
+    notFound();
   }
-  
+
   // Get the country data using our helper function
-  const countryInfo = getCountryData(country)
-  
+  const countryInfo = getCountryData(country);
+
   // Additional safety check (though isValidCountry should catch this)
   if (!countryInfo) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -42,22 +42,26 @@ export default function CountryPage({ params }) {
       */}
       <div className="mb-8">
         {/* Back navigation link */}
-        <Link 
-          href="/destinations" 
+        <Link
+          href="/destinations"
           className="inline-flex items-center text-travel-blue-600 hover:text-travel-blue-700 mb-6 transition-colors"
         >
           ← Back to Destinations
         </Link>
-        
+
         {/* Country title with flag */}
         <div className="flex items-center space-x-4 mb-6">
           <span className="text-6xl">{countryInfo.flag}</span>
           <div>
-            <h1 className="text-4xl font-bold text-gray-800">{countryInfo.name}</h1>
-            <p className="text-xl text-gray-600">Capital: {countryInfo.capital}</p>
+            <h1 className="text-4xl font-bold text-gray-800">
+              {countryInfo.name}
+            </h1>
+            <p className="text-xl text-gray-600">
+              Capital: {countryInfo.capital}
+            </p>
           </div>
         </div>
-        
+
         {/* Country description */}
         <p className="text-lg text-gray-700 leading-relaxed max-w-4xl">
           {countryInfo.description}
@@ -73,19 +77,21 @@ export default function CountryPage({ params }) {
           <h3 className="font-semibold text-blue-800 mb-1">Population</h3>
           <p className="text-blue-700">{countryInfo.population}</p>
         </div>
-        
+
         <div className="bg-green-50 p-4 rounded-lg border border-green-200">
           <h3 className="font-semibold text-green-800 mb-1">Currency</h3>
           <p className="text-green-700">{countryInfo.currency}</p>
         </div>
-        
+
         <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
           <h3 className="font-semibold text-purple-800 mb-1">Language</h3>
           <p className="text-purple-700">{countryInfo.language}</p>
         </div>
-        
+
         <div className="bg-orange-50 p-4 rounded-lg border border-orange-200">
-          <h3 className="font-semibold text-orange-800 mb-1">Best Time to Visit</h3>
+          <h3 className="font-semibold text-orange-800 mb-1">
+            Best Time to Visit
+          </h3>
           <p className="text-orange-700">{countryInfo.bestTimeToVisit}</p>
         </div>
       </div>
@@ -110,10 +116,15 @@ export default function CountryPage({ params }) {
       <div className="grid lg:grid-cols-2 gap-12">
         {/* TOP ATTRACTIONS SECTION */}
         <div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">🏛️ Top Attractions</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">
+            🏛️ Top Attractions
+          </h2>
           <div className="space-y-4">
             {countryInfo.attractions.map((attraction, index) => (
-              <div key={index} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+              <div
+                key={index}
+                className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm"
+              >
                 <h3 className="font-semibold text-lg text-gray-800 mb-2">
                   {attraction.name}
                 </h3>
@@ -128,8 +139,10 @@ export default function CountryPage({ params }) {
 
         {/* CULTURE & LIFESTYLE SECTION */}
         <div>
-          <h2 className="text-2xl font-bold text-gray-800 mb-6">🎭 Culture & Lifestyle</h2>
-          
+          <h2 className="text-2xl font-bold text-gray-800 mb-6">
+            🎭 Culture & Lifestyle
+          </h2>
+
           {/* Cuisine */}
           <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm mb-4">
             <h3 className="font-semibold text-lg text-gray-800 mb-2 flex items-center">
@@ -137,7 +150,7 @@ export default function CountryPage({ params }) {
             </h3>
             <p className="text-gray-600">{countryInfo.culture.cuisine}</p>
           </div>
-          
+
           {/* Traditions */}
           <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm mb-4">
             <h3 className="font-semibold text-lg text-gray-800 mb-2 flex items-center">
@@ -145,7 +158,7 @@ export default function CountryPage({ params }) {
             </h3>
             <p className="text-gray-600">{countryInfo.culture.traditions}</p>
           </div>
-          
+
           {/* Etiquette */}
           <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
             <h3 className="font-semibold text-lg text-gray-800 mb-2 flex items-center">
@@ -166,25 +179,29 @@ export default function CountryPage({ params }) {
         </h3>
         <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-600">
           <div>
-            <strong>Dynamic Routing:</strong> This page uses <code className="bg-gray-200 px-1 rounded">[country]</code> 
+            <strong>Dynamic Routing:</strong> This page uses{" "}
+            <code className="bg-gray-200 px-1 rounded">[country]</code>
             to handle multiple country URLs with a single component.
           </div>
           <div>
-            <strong>Layout Persistence:</strong> The blue banner above stays mounted while you navigate 
-            between different countries.
+            <strong>Layout Persistence:</strong> The blue banner above stays
+            mounted while you navigate between different countries.
           </div>
           <div>
-            <strong>Error Handling:</strong> Invalid country URLs automatically trigger a 404 page 
-            using Next.js <code className="bg-gray-200 px-1 rounded">notFound()</code> function.
+            <strong>Error Handling:</strong> Invalid country URLs automatically
+            trigger a 404 page using Next.js{" "}
+            <code className="bg-gray-200 px-1 rounded">notFound()</code>{" "}
+            function.
           </div>
           <div>
-            <strong>Data Fetching:</strong> Country data is fetched from a local data file, 
-            demonstrating how to structure and access data in App Router.
+            <strong>Data Fetching:</strong> Country data is fetched from a local
+            data file, demonstrating how to structure and access data in App
+            Router.
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 /*
